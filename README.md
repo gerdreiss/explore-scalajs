@@ -1,2 +1,2 @@
-## Exploration of Scala.JS
+## Exploration of Scala.JS + libs
 
