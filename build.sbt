@@ -9,17 +9,17 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 Global / semanticdbEnabled    := true // for metals
 
 /**
-  * LAMINAR + CATS + HTTP4S
+  * CATS + HTTP4S + LAMINAR
   */
 lazy val root = project
   .in(file("."))
-  .aggregate(`frontend-laminar-cats`, `backend-http4s`, `shared-cats`.jvm, `shared-cats`.js)
+  .aggregate(`backend-http4s-cats`, `frontend-laminar-cats`, `shared-cats`.jvm, `shared-cats`.js)
 
 /**
   * BACKEND
   */
-lazy val `backend-http4s` = project
-  .in(file("modules/backend-http4s"))
+lazy val `backend-http4s-cats` = project
+  .in(file("modules/backend-http4s-cats"))
   .settings(commonSettings)
   .dependsOn(`shared-cats`.jvm)
 
