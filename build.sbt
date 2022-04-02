@@ -24,7 +24,7 @@ lazy val `backend-http4s` = project
   .dependsOn(`shared-cats`.jvm)
 
 lazy val `backend-zio` = project
-  .in(file("modules/backend-http4s"))
+  .in(file("modules/backend-zio"))
   .settings(commonSettings)
   .dependsOn(`shared-zio`.jvm)
 
