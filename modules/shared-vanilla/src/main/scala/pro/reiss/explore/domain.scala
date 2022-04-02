@@ -4,7 +4,7 @@ import java.time.LocalDate
 import java.time.Month
 import scala.util.matching.Regex
 
-object model:
+object domain:
   enum ModelError:
     case EmptyValue, InvalidName, InvalidEmail, InvalidBirthdate
 
