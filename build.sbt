@@ -21,11 +21,22 @@ lazy val root = project
 lazy val `backend-http4s-cats` = project
   .in(file("modules/backend-http4s-cats"))
   .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.http4s" %% "http4s-ember-server" % "1.0.0-M32",
+      "org.http4s" %% "http4s-dsl"          % "1.0.0-M32"
+    )
+  )
   .dependsOn(`shared-cats`.jvm)
 
 lazy val `backend-zio` = project
   .in(file("modules/backend-zio"))
   .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "io.d11" %% "zhttp" % "2.0.0-RC4"
+    )
+  )
   .dependsOn(`shared-zio`.jvm)
 
 /**
@@ -38,7 +49,9 @@ lazy val `frontend-vanilla` = project
   .settings(commonFrontendSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "2.1.0"
+      "org.scala-js"                  %%% "scalajs-dom" % "2.1.0",
+      "com.softwaremill.sttp.client3"  %% "core"        % "3.5.1",
+      "com.softwaremill.sttp.client3" %%% "circe"       % "3.5.1"
     )
   )
   .dependsOn(`shared-vanilla`.js)
@@ -50,7 +63,9 @@ lazy val `frontend-laminar-cats` = project
   .settings(commonFrontendSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "com.raquo" %%% "laminar" % "0.14.2"
+      "com.raquo"                     %%% "laminar" % "0.14.2",
+      "com.softwaremill.sttp.client3"  %% "core"    % "3.5.1",
+      "com.softwaremill.sttp.client3" %%% "circe"   % "3.5.1"
     )
   )
   .dependsOn(`shared-cats`.js)
@@ -67,7 +82,7 @@ lazy val `frontend-tyrian-zio` = project
   )
   .dependsOn(`shared-zio`.js)
 
-// TODO add udash + tyrian
+// TODO add udash???
 
 /**
   * SHARED
