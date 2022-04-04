@@ -24,7 +24,10 @@ lazy val `backend-http4s-cats` = project
   .settings(
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % "1.0.0-M32",
-      "org.http4s" %% "http4s-dsl"          % "1.0.0-M32"
+      "org.http4s" %% "http4s-blaze-server" % "1.0.0-M32",
+      "org.http4s" %% "http4s-dsl"          % "1.0.0-M32",
+      "org.http4s" %% "http4s-circe"        % "1.0.0-M32",
+      "io.circe"   %% "circe-generic"       % "0.15.0-M1"
     )
   )
   .dependsOn(`shared-cats`.jvm)
@@ -116,7 +119,7 @@ lazy val `shared-zio` = crossProject(JSPlatform, JVMPlatform)
 val commonSettings = Seq(
   scalacOptions ++= Seq(
     "-source:future",
-    "-Ywarn-unused",
+    //"-Ywarn-unused",
     "-deprecation",
     "-explain",
     "-feature",

@@ -1,7 +1,6 @@
 package pro.reiss.explore
 
-import java.time.LocalDate
-import java.time.Month
+import java.time.{ LocalDate, Month }
 import scala.util.matching.Regex
 
 object domain:
@@ -11,13 +10,15 @@ object domain:
   opaque type Firstname = String
   object Firstname:
     def make(name: String): Either[ModelError, Firstname] =
-      if name.trim.nn.isEmpty then Left(ModelError.EmptyValue)
-      else if name.length < 2 then Left(ModelError.InvalidName)
-      else Right(name)
+      NameFactory.make(name)
 
   opaque type Lastname = String
   object Lastname:
     def make(name: String): Either[ModelError, Lastname] =
+      NameFactory.make(name)
+
+  private object NameFactory:
+    def make(name: String): Either[ModelError, String] =
       if name.trim.nn.isEmpty then Left(ModelError.EmptyValue)
       else if name.length < 2 then Left(ModelError.InvalidName)
       else Right(name)
@@ -37,8 +38,7 @@ object domain:
   object Birthdate:
     def make(date: LocalDate): Either[ModelError, Birthdate] =
       val today = LocalDate.now.nn
-      if date.isBefore(today.minusYears(120)) || date.isAfter(today) then
-        Left(ModelError.InvalidBirthdate)
+      if date.isBefore(today.minusYears(120)) || date.isAfter(today) then Left(ModelError.InvalidBirthdate)
       else Right(date)
 
   final case class Person(
