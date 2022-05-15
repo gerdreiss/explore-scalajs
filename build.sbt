@@ -67,8 +67,8 @@ lazy val `frontend-laminar-cats` = project
   .settings(
     libraryDependencies ++= Seq(
       "com.raquo"                     %%% "laminar" % "0.14.2",
-      "com.softwaremill.sttp.client3"  %% "core"    % "3.5.1",
-      "com.softwaremill.sttp.client3" %%% "circe"   % "3.5.1"
+      "com.softwaremill.sttp.client3"  %% "core"    % "3.6.1",
+      "com.softwaremill.sttp.client3" %%% "circe"   % "3.6.1"
     )
   )
   .dependsOn(`shared-cats`.js)
@@ -119,7 +119,7 @@ lazy val `shared-zio` = crossProject(JSPlatform, JVMPlatform)
 val commonSettings = Seq(
   scalacOptions ++= Seq(
     "-source:future",
-    //"-Ywarn-unused",
+    // "-Ywarn-unused",
     "-deprecation",
     "-explain",
     "-feature",
