@@ -67,20 +67,23 @@ lazy val `frontend-laminar-cats` = project
   .settings(
     libraryDependencies ++= Seq(
       "com.raquo"                     %%% "laminar" % "0.14.2",
-      "com.softwaremill.sttp.client3"  %% "core"    % "3.6.1",
-      "com.softwaremill.sttp.client3" %%% "circe"   % "3.6.1"
+      "com.softwaremill.sttp.client3"  %% "core"    % "3.6.2",
+      "com.softwaremill.sttp.client3" %%% "circe"   % "3.6.2"
     )
   )
   .dependsOn(`shared-cats`.js)
 
 lazy val `frontend-tyrian-zio` = project
   .in(file("modules/frontend-tyrian-zio"))
-  .enablePlugins(ScalaJSPlugin)
+  .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
   .settings(commonSettings)
   .settings(commonFrontendSettings)
   .settings(
     libraryDependencies ++= Seq(
       "io.indigoengine" %%% "tyrian" % "0.3.2"
+    ),
+    Compile / npmDependencies ++= Seq(
+      "snabbdom" -> "3.0.1"
     )
   )
   .dependsOn(`shared-zio`.js)
